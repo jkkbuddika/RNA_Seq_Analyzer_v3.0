@@ -77,6 +77,7 @@ cd ..
 ls
 ```
 > add_mat  
+
 > scripts
 
 ### Step 4: Input data preparation
@@ -86,7 +87,9 @@ mkdir raw_sequences
 ls
 ```
 > add_mat
+
 > raw_sequences
+
 > scripts
 
 Then upload adapter trimmed sequences to the raw_sequences directory. The naming of files is ***very important*** and follow the recommended naming scheme. Always the name of a file should end with ***'_R1.fastq'*** for single-end data inputs. If the input is paired-end, the name of two read mates should end with ***'_R1.fastq'*** and ***'_R2.fastq'***. During analysis the pipeline sorts and lists input files based on this architecture.
@@ -97,3 +100,4 @@ source activate dataanalyzer
 cd scripts
 python run.py
 ```
+
