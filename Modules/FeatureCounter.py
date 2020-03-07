@@ -33,7 +33,7 @@ class FeatureCounter:
 
             param = [
                 'featureCounts -t', self.gfeature[i],
-                '-F GTF -g gene_name --minOverlap 10 --largestOverlap --primary -s', self.stranded,
+                '-F GTF -g gene_name -O -M -s', self.stranded,
                 '-a', self.feature_dir + self.feature_file.split('.gz')[0],
                 '-o', outdir + '/' + self.gfeature[i] + self.extensions[3],
                 ' '.join([self.input_dir + '{0}'.format(j.split(self.input_dir)[1]) for j in file_list])
