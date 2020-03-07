@@ -17,12 +17,8 @@ class CommonVariables:
     tagdust_out = home_dir + 'tagdust_out/'
     rRNA_path = add_mat + gv.rRNA_list
 
-    ## Cutadapt Variables
-    cutadapt_dir = home_dir + 'cutadapt/'
-
     ## Variables for FastQC
-    fastqc_raw = 'fastqc_raw'
-    fastqc_trimmed = 'fastqc_trimmed'
+    fastqc_raw = 'fastqc'
 
     ## STAR Reference Genome
     genome_file = os.path.basename(gv.genome)
@@ -46,7 +42,7 @@ class CommonVariables:
     sam_sorted = home_dir + 'sam_sorted/'
 
     ## DeepTools BigWig Files
-    bigwig_files = home_dir + 'bigwig_files/'
+    bigwig_files = home_dir + 'bedgraphs/'
 
     ## FeatureCounts
     fc_output = home_dir + 'feature_counts'

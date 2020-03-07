@@ -6,7 +6,7 @@ import ColorTextWriter
 
 class FeatureCounter:
 
-    def __init__(self, home_dir, input_dir, gfeature, stranded, feature_dir, feature_file, extensions):
+    def __init__(self, home_dir, input_dir, gfeature, stranded, feature_dir, feature_file, extensions, seq_method):
         self.home_dir = home_dir
         self.input_dir = input_dir
         self.gfeature = gfeature
@@ -14,6 +14,7 @@ class FeatureCounter:
         self.feature_dir = feature_dir
         self.feature_file = feature_file
         self.extensions = extensions
+        self.seq_method = seq_method
 
     def feature(self):
 
@@ -31,15 +32,20 @@ class FeatureCounter:
 
             print('\n' + 'Quantifying ' + self.gfeature[i] + 's ...' + '\n')
 
-            param = [
+            command = [
                 'featureCounts -t', self.gfeature[i],
-                '-F GTF -g gene_name -O -M -s', self.stranded,
+                '-F GTF -g gene_name -O -M -s', self.stranded
+            ]
+
+            if self.seq_method == 'paired': command.extend(['-p -B -C'])
+
+            command.extend([
                 '-a', self.feature_dir + self.feature_file.split('.gz')[0],
                 '-o', outdir + '/' + self.gfeature[i] + self.extensions[3],
                 ' '.join([self.input_dir + '{0}'.format(j.split(self.input_dir)[1]) for j in file_list])
-            ]
+            ])
 
-            command = ' '.join(param)
+            command = ' '.join(command)
             sp.check_call(command, shell=True)
 
             ### Manipulating the FeatureCounts output

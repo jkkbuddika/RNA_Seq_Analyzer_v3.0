@@ -28,7 +28,7 @@ cv = CommonVariables.CommonVariables()
 qc = FastQCRunner.FastQCRunner(cv.home_dir, cv.fastqc_raw, cv.raw_sequences_dir)
 qc.fastqc()
 
-td = Tagduster.Tagduster(cv.home_dir, cv.tagdust_singu, cv.cutadapt_dir, cv.rRNA_path, cv.extensions, gv.seq_method)
+td = Tagduster.Tagduster(cv.home_dir, cv.tagdust_singu, cv.raw_sequences_dir, cv.rRNA_path, cv.extensions, gv.seq_method)
 td.tagdust()
 
 tdsp = TDSummaryProcessor.TDSummaryProcessor(cv.home_dir, cv.tagdust_out)
@@ -52,12 +52,11 @@ ss.sam_sorting()
 bw = BigWigFileMaker.BigWigFileMaker(cv.home_dir, cv.sam_sorted, cv.extensions)
 bw.bigwig()
 
-fc = FeatureCounter.FeatureCounter(cv.home_dir, cv.sam_sorted, gv.diff_features, gv.stranded, cv.feature_dir, cv.feature_file, cv.extensions)
+fc = FeatureCounter.FeatureCounter(cv.home_dir, cv.sam_sorted, gv.diff_features, gv.stranded, cv.feature_dir, cv.feature_file, cv.extensions, gv.seq_method)
 fc.feature()
 
 mqc = MultiQCRunner.MultiQCRunner(cv.home_dir)
 mqc.multiqc()
 
 ctw = ColorTextWriter.ColorTextWriter()
-print('\n' + ctw.CGREEN + ctw.CBOLD + 'Data analysis successfully completed for ' + ctw.CBLACK +
-      ctw.CURL + ctw.CBLINK + ctw.CBOLD + gv.tar_gz_file + ctw.CEND + ctw.CGREEN + ctw.CBOLD + ' !!!' + ctw.CEND + '\n')
+print('\n' + ctw.CGREEN + ctw.CBOLD + ctw.CBLINK + 'Data analysis is successfully completed!!! ' + ctw.CEND + '\n')
