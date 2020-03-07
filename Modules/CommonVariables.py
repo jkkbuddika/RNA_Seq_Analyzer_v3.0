@@ -20,7 +20,7 @@ class CommonVariables:
     ## Variables for FastQC
     file_type = ['*.fastq', '*.bam']
     fastqc_raw = 'fastqc_raw'
-    fastqc_bam = 'fastqc_mapped' 
+    fastqc_bam = 'fastqc_mapped'
 
     ## STAR Reference Genome
     genome_file = os.path.basename(gv.genome)
