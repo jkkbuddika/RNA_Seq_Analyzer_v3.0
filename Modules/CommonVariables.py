@@ -18,7 +18,9 @@ class CommonVariables:
     rRNA_path = add_mat + gv.rRNA_list
 
     ## Variables for FastQC
-    fastqc_raw = 'fastqc'
+    file_type = ['*.fastq', '*.bam']
+    fastqc_raw = 'fastqc_raw'
+    fastqc_bam = 'fastqc_mapped' 
 
     ## STAR Reference Genome
     genome_file = os.path.basename(gv.genome)

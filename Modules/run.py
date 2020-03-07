@@ -25,8 +25,8 @@ cv = CommonVariables.CommonVariables()
 #ex = GzExtractor.GzExtractor(cv.raw_sequences_dir)
 #ex.gz_extractor()
 
-qc = FastQCRunner.FastQCRunner(cv.home_dir, cv.fastqc_raw, cv.raw_sequences_dir)
-qc.fastqc()
+qc_raw = FastQCRunner.FastQCRunner(cv.home_dir, cv.fastqc_raw, cv.raw_sequences_dir, cv.file_type[0])
+qc_raw.fastqc()
 
 td = Tagduster.Tagduster(cv.home_dir, cv.tagdust_singu, cv.raw_sequences_dir, cv.rRNA_path, cv.extensions, gv.seq_method)
 td.tagdust()
@@ -48,6 +48,9 @@ sa.aligner()
 
 ss = SamTools.SamTools(cv.home_dir, cv.star_aligned, cv.Threads, cv.extensions)
 ss.sam_sorting()
+
+qc_bam = FastQCRunner.FastQCRunner(cv.home_dir, cv.fastqc_raw, cv.raw_sequences_dir, cv.file_type[1])
+qc_bam.fastqc()
 
 bw = BigWigFileMaker.BigWigFileMaker(cv.home_dir, cv.sam_sorted, cv.extensions)
 bw.bigwig()
