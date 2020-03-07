@@ -45,7 +45,9 @@ Once cloning is completed:
 mkdir scripts
 mv RNA_Seq_Analyzer_v2.0/Modules/*.py scripts/
 rm -rf RNA_Seq_Analyzer_v2.0
+ls
 ```
+> scripts   
 At this point, your home directory will have a directory named *scripts* with all individual modules of the python analysis pipeline.
 ### Step 2: Download additional materials
 In addition to above tools, this pipeline integrates [TagDust2](http://tagdust.sourceforge.net/) to remove rRNAs, the major form of RNA contaminant during early steps of analysis. We will download the singularity image from [GoSTRIPES](https://github.com/BrendelGroup/GoSTRIPES) workflow to use TagDust2 in this analysis. For this:
