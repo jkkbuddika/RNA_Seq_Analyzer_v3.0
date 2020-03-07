@@ -5,7 +5,6 @@ The current version of the RNA-Seq data analyzer is compatible with both single 
 The RNA-seq data analyzer requires following tools to be installed for data analysis.
 
 - [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
-- [Cutadapt](https://github.com/marcelm/cutadapt/)
 - [STAR](https://github.com/alexdobin/STAR)
 - [QualiMap](http://qualimap.bioinfo.cipf.es/)
 - [SAMtools](https://github.com/samtools/samtools)
@@ -19,7 +18,7 @@ We thank developers of these valueble tools!
 Start data analysis with setting up a conda environment with all the above tools installed, as it gives you the opportunity to use most updated versions. To set up the conda environment (i.e., dataanalyzer):
 ```
 conda create -n dataanalyzer python=3.7
-conda install -n dataanalyzer -c conda-forge -c bioconda fastqc cutadapt star qualimap samtools deeptools subread multiqc singularity
+conda install -n dataanalyzer -c conda-forge -c bioconda fastqc star qualimap samtools deeptools subread multiqc singularity
 ```
 To update your conda environment:
 ```
