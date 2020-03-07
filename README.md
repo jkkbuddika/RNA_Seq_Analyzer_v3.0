@@ -78,6 +78,7 @@ ls
 ```
 > add_mat  
 > scripts
+
 ### Step 4: Input data preparation
 The pipeline uses adapter trimmed input files in .fastq format for analysis. To make the "raw_sequences" on your home directory, navigate first to the home directory and create a directory *raw_sequences*.
 ```
@@ -87,10 +88,12 @@ ls
 > add_mat
 > raw_sequences
 > scripts
+
 Then upload adapter trimmed sequences to the raw_sequences directory. The naming of files is ***very important*** and follow the recommended naming scheme. Always the name of a file should end with ***'_R1.fastq'*** for single-end data inputs. If the input is paired-end, the name of two read mates should end with ***'_R1.fastq'*** and ***'_R2.fastq'***. During analysis the pipeline sorts and lists input files based on this architecture.
 ### Step 5: Executing the pipeline
-All executables of the pipeline are written onto *run.py* module. To start analyzing data first navigate to the scripts directory and execute run.py using python.
+All executables of the pipeline are written onto *run.py* module. To start analyzing data activate the conda environment above, navigate to the scripts directory and execute run.py using python.
 ```
+source activate dataanalyzer
 cd scripts
 python run.py
 ```
