@@ -77,7 +77,6 @@ cd ..
 ls
 ```
 > add_mat  
-
 > scripts
 
 ### Step 4: Input data preparation
@@ -87,9 +86,7 @@ mkdir raw_sequences
 ls
 ```
 > add_mat
-
 > raw_sequences
-
 > scripts
 
 Then upload adapter trimmed sequences to the raw_sequences directory. The naming of files is ***very important*** and follow the recommended naming scheme. Always the name of a file should end with ***'_R1.fastq'*** for single-end data inputs. If the input is paired-end, the name of two read mates should end with ***'_R1.fastq'*** and ***'_R2.fastq'***. During analysis the pipeline sorts and lists input files based on this architecture.
@@ -100,4 +97,6 @@ source activate dataanalyzer
 cd scripts
 python run.py
 ```
+## Analysis process
+All analyzed data will be saved onto the home directory where you deposited the *scripts* directory. The pipeline first use [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) to assess the quality of adapter-trimmed raw input files. Next [TagDust2](http://tagdust.sourceforge.net/) is being used to remove rRNA contaminants from individual datasets. A datamining module in the pipeline will summarize TagDust2 rRNA removal logs and deposit mined data onto a file named **TagDust_summary.csv*** which will be saved onto a directory named *summary_files*. Subsequently, user defined genome and annotation files will be downloaded and a reference genome will be created. Subsequently, rRNA-depleted sequences are mapped to the given genome using [STAR](https://github.com/alexdobin/STAR) genome aligner. The pipeline use [QualiMap](http://qualimap.bioinfo.cipf.es/) to assess the quality of sequence alignment. The analysis scheme use [SAMtools](https://github.com/samtools/samtools) to coordinate sort, remove potential PCR duplicates and index alignment output files. The sorted alignment file and the index will be used by [deepTools](https://github.com/deeptools/deepTools/) to generate bigwig files for [IGV](https://software.broadinstitute.org/software/igv/) visualization. Next subread package [featureCounts](http://subread.sourceforge.net/) will be called to quantify user defined set of features. Finally, the pipeline integrates [MultiQC](https://github.com/ewels/MultiQC) to generate summary files in an interactive manner.
 
