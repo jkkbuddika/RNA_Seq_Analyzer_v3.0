@@ -55,11 +55,15 @@ singularity pull --name gostripes.simg shub://BrendelGroup/GoSTRIPES
 ```
 Now that we have downloaded the singularity image to call and run TagDust2, next step is to download the most updated rRNA sequence list from Ensembl [BioMart](http://useast.ensembl.org/biomart/martview/b56f6bc18af941cb4a61c1ef121b91d1). For example, [click here](https://www.ensembl.org/biomart/martview/67dcc0a3e364a6154fcdfd992dcdbdf2) to download Drosophila rRNA sequence list to your local computer, rename the file name (i.e., "Dro_rRNA.txt") and transfer the file to "add_mat" directory.
 ### Analysis mode selection and defining experimental design
-The pipeline can be used to analyze both single and paired-end (SE and PE) sequencing data. To specify the sequencing method open module "GeneralVariables.py" using emacs text editor. 
+The pipeline can be used to analyze both single and paired-end (SE and PE) sequencing data generated from any model organism. To specify these experiment specific variables, open and update "GeneralVariables.py" module using emacs text editor.
 ```
 emacs GeneralVariables.py
 ```
-Change the value of the variable "seq_method" to change the analysis mode. Options include "single" (SE sequencing data analysis mode) and "paired" (PE sequencing data analysis mode). Furthermore, you can specify the strandedness of the experiment. To do this change the value of variable "stranded". Options are 0 (unstranded), 1 (stranded) and 2 (reversely stranded).
-Additionally, this module allows you to specify the name of the rRNA sequence file as well. Assign the name of the rRNA sequence file to the variable "rRNA_list".
+- Change the value of the variable "seq_method" to change the analysis mode. Options include "single" (SE sequencing data analysis mode) and "paired" (PE sequencing data analysis mode).
+- Specify the name of the rRNA sequence list in add_mat directory by updating the string value of variable "rRNA_list".
+- Update the Biomart link to the genome of interest. For example, link to the Drosophila genome is given [here](ftp://ftp.ensembl.org/pub/release-99/fasta/drosophila_melanogaster/dna/Drosophila_melanogaster.BDGP6.28.dna_sm.toplevel.fa.gz).
+- Update the Biomart link to the genome annotation of interest. For example, link to the Drosophila genome annotation is given [here](ftp://ftp.ensembl.org/pub/release-99/gtf/drosophila_melanogaster/Drosophila_melanogaster.BDGP6.28.99.gtf.gz).
+- To specify the strandedness of the experiment change the value of variable "stranded". Options are 0 (unstranded), 1 (stranded) and 2 (reversely stranded).
+- You can define which features to be counted using featureCounts by updating values of the list "diff_features". To check the supported feature types on Biomart annotation, download and open the annotation file using "less" command.
 ### Input data preparation
 The pipeline uses adapter trimmed input files in .fastq format for analysis. Transfer trimmed raw sequences to a directory named "raw_sequences" on your home directory. 
