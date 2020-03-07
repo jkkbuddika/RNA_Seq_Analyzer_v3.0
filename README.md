@@ -115,6 +115,7 @@ echo $i $c
 done > raw_readCounts.txt
 ```
 Executing the above bash command will save a file named *raw_readCounts.txt* in the *raw_sequences* directory with file name and number of reads in each file.
+
 2. If the directory of interest have a series of *.fastq.gz* files you can modify the command as follows:
 ```
 for i in `ls *.fastq.gz`; do
