@@ -124,3 +124,13 @@ c=$((c/4))
 echo $i $c
 done > raw_readCounts.txt
 ```
+3. If the directory of interest have a series of *.bam* files, you can use the following bash command that uses [SAMtools](https://github.com/samtools/samtools):
+```
+cd star_aligned
+
+for i in `ls *.bam`; do
+echo ${i} $(samtools view -F 4 -c $i)
+done > bam_readCounts_aligned.txt
+```
+> Executing the above bash command will save a file named *bam_readCounts_aligned.txt* in the *star_aligned* directory with bam file names and number of reads that are mapped to the reference genome.
+
