@@ -17,7 +17,7 @@ We thank developers of these valueble tools!
 ## Getting started
 Start data analysis with setting up a conda environment with all the above tools installed, as it gives you the opportunity to use most updated versions. To set up the conda environment (i.e., dataanalyzer):
 ```
-conda create -n dataanalyzer python=3.7
+conda create -n dataanalyzer -c conda-forge -c bioconda python=3.7
 conda install -n dataanalyzer -c conda-forge -c bioconda fastqc star qualimap samtools deeptools subread multiqc singularity
 ```
 To update your conda environment:
