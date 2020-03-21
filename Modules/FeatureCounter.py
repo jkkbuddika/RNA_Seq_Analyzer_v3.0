@@ -18,7 +18,7 @@ class FeatureCounter:
 
     def feature(self):
 
-        file_list = sorted(glob.glob(self.input_dir + '*.bam'))
+        bam_list = sorted(glob.glob(self.input_dir + '*.bam'))
 
         ctw = ColorTextWriter.ColorTextWriter()
 
@@ -42,7 +42,7 @@ class FeatureCounter:
             command.extend([
                 '-a', self.feature_dir + self.feature_file.split('.gz')[0],
                 '-o', outdir + '/' + self.gfeature[i] + self.extensions[3],
-                ' '.join([self.input_dir + '{0}'.format(j.split(self.input_dir)[1]) for j in file_list])
+                ' '.join([self.input_dir + '{0}'.format(j.split(self.input_dir)[1]) for j in bam_list])
             ])
 
             command = ' '.join(command)
@@ -51,7 +51,7 @@ class FeatureCounter:
             ### Manipulating the FeatureCounts output
             data = pd.read_csv(outdir + '/' + self.gfeature[i] + self.extensions[3], sep='\t', header=0, index_col=0, skiprows=1)
 
-            data = data.drop(data.iloc[:, 0:5], axis=1)
+            data = data.drop(data.iloc[:, 0:4], axis=1)
 
             data.to_csv(outdir + '/' + self.gfeature[i] + '_DESeq2_Input' + self.extensions[3], sep='\t')
 

@@ -16,11 +16,11 @@ class SamTools():
         outdir = os.path.join(self.home_dir, 'sam_sorted')
         if not os.path.isdir(outdir): os.mkdir(outdir)
 
-        bam_files = sorted(glob.glob(self.input_dir + '*.bam'))
+        bam_list = sorted(glob.glob(self.input_dir + '*.bam'))
 
         ctw = ColorTextWriter.ColorTextWriter()
 
-        for i in bam_files:
+        for i in bam_list:
             if i.endswith(self.extensions[4]):
 
                 print(ctw.CRED + 'Filtering and Sorting: ' + ctw.CBLUE + os.path.basename(i) + ctw.CRED + ' ...' + ctw.CEND + '\n')

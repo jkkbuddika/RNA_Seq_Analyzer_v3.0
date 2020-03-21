@@ -5,7 +5,7 @@ class CommonVariables:
     gv = GeneralVariables.GeneralVariables()
 
     ## General
-    home_dir = os.path.dirname(os.getcwd())
+    home_dir = os.path.dirname(os.getcwd()) + '/'
     raw_sequences_dir = home_dir + 'raw_sequences/'
     add_mat = home_dir + 'add_mat/'
     Threads = '8'
@@ -25,19 +25,17 @@ class CommonVariables:
     ## STAR Reference Genome
     genome_file = os.path.basename(gv.genome)
     genome_path = os.path.dirname(gv.genome) + '/'
-    genome_url = genome_path + genome_file
     genome_dir_name = 'genome'
     genome_dir = home_dir + 'genome/'
     genome_fa = genome_dir + os.path.splitext(genome_file)[0]
     feature_file = os.path.basename(gv.feature)
     feature_path = os.path.dirname(gv.feature) + '/'
-    feature_url = feature_path + feature_file
     feature_dir_name = 'genome_feature'
     feature_dir = home_dir + 'genome_feature/'
     genes_gtf = feature_dir + os.path.splitext(feature_file)[0]
-    ref_genome = home_dir + 'star_genome/'
 
     ## STAR Alignment
+    ref_genome = home_dir + 'star_genome/'
     star_aligned = home_dir + 'star_aligned/'
 
     ## Sam Tools Sorting

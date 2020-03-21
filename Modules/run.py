@@ -42,11 +42,11 @@ rg.refgen()
 sa = StarAligner.StarAligner(cv.home_dir, cv.tagdust_out, cv.Threads, cv.ref_genome, cv.extensions, cv.genes_gtf, gv.seq_method)
 sa.aligner()
 
+qc_bam = FastQCRunner.FastQCRunner(cv.home_dir, cv.fastqc_bam, cv.star_aligned, cv.file_type[1])
+qc_bam.fastqc()
+
 ss = SamTools.SamTools(cv.home_dir, cv.star_aligned, cv.Threads, cv.extensions)
 ss.sam_sorting()
-
-qc_bam = FastQCRunner.FastQCRunner(cv.home_dir, cv.fastqc_raw, cv.raw_sequences_dir, cv.file_type[1])
-qc_bam.fastqc()
 
 bw = BigWigFileMaker.BigWigFileMaker(cv.home_dir, cv.sam_sorted, cv.extensions)
 bw.bigwig()
