@@ -93,6 +93,13 @@ ls
 > scripts   
 
 Then upload adapter trimmed sequences to the raw_sequences directory. The naming of files is ***very important*** and follow the recommended naming scheme. Always the name of a file should end with ***'_R1.fastq'*** for single-end data inputs. If the input is paired-end, the name of two read mates should end with ***'_R1.fastq'*** and ***'_R2.fastq'***. During analysis the pipeline sorts and lists input files based on this architecture.
+> You can automate this input name preparation by using the following bash command. In this example, let's assume the current file name is *'esg-Input_T1_R1_001.fastq'* and *'esg-Input_T1_R1_001.fastq'* (for a paired end example). The following bash command lists all R1 read files and remove *_001* from R1 file names. To do the same for R2, you have to change R1 to R2 on the command.
+```
+for i in `ls *R1*`; do
+NEWNAME="${i/%_001.fastq/.fastq}"
+mv -- "$i" "$NEWNAME"; 
+done
+```
 ### Step 5: Executing the pipeline
 All executables of the pipeline are written onto *run.py* module. To start analyzing data activate the conda environment above, navigate to the scripts directory and execute *run.py* using python.
 ```
