@@ -1,6 +1,5 @@
 import GeneralVariables
 import CommonVariables
-import GzExtractor
 import FastQCRunner
 import Tagduster
 import TDSummaryProcessor
@@ -21,9 +20,6 @@ print(ctw.CRED + 'This script can take minutes to hours to analyze your data bas
 
 gv = GeneralVariables.GeneralVariables()
 cv = CommonVariables.CommonVariables()
-
-#ex = GzExtractor.GzExtractor(cv.raw_sequences_dir)
-#ex.gz_extractor()
 
 qc_raw = FastQCRunner.FastQCRunner(cv.home_dir, cv.fastqc_raw, cv.raw_sequences_dir, cv.file_type[0])
 qc_raw.fastqc()

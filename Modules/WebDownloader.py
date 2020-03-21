@@ -1,5 +1,5 @@
-import subprocess as sp
 import os
+import subprocess as sp
 import TarExtractor
 import ColorTextWriter
 

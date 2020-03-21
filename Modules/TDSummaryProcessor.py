@@ -1,6 +1,6 @@
 import os
-import pandas as pd
 import glob
+import pandas as pd
 
 lines = ['total input reads', 'successfully extracted', 'extracted', 'problems with architecture']
 

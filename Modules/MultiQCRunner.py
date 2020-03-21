@@ -1,6 +1,6 @@
-import ListMaker
 import os
 import subprocess as sp
+import ListMaker
 import ColorTextWriter
 
 class MultiQCRunner:

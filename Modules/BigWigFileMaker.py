@@ -1,7 +1,7 @@
-import subprocess as sp
 import os
-import ColorTextWriter
 import glob
+import subprocess as sp
+import ColorTextWriter
 
 class BigWigFileMaker():
 
