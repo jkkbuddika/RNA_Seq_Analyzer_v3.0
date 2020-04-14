@@ -74,9 +74,9 @@ class StarAligner:
         print('\n' + ctw.CRED + ctw.CBOLD + 'Star Alignment Completed!!!' + ctw.CEND + '\n')
 
         #### Mapping quality control using Qualimap
-        bam_files = sorted(glob.glob(outdir + '/' + '*.bam'))
+        bam_list = sorted(glob.glob(outdir + '/' + '*.bam'))
 
-        for i in bam_files:
+        for i in bam_list:
             command = [
                 'qualimap rnaseq',
                 '-bam', i,

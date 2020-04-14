@@ -51,8 +51,7 @@ class SamTools():
             command = ' '.join(command)
             sp.check_call(command, shell=True)
 
-            print('\n' + ctw.CRED + 'Indexing: ' + ctw.CBLUE + os.path.basename(
-                output_file) + ctw.CRED + ' ...' + ctw.CEND + '\n')
+            print('\n' + ctw.CRED + 'Indexing: ' + ctw.CBLUE + os.path.basename(output_file) + ctw.CRED + ' ...' + ctw.CEND + '\n')
 
             command = [
                 'samtools index', output_file
@@ -60,7 +59,5 @@ class SamTools():
 
             command = ' '.join(command)
             sp.check_call(command, shell=True)
-
-
 
         print(ctw.CBEIGE + ctw.CBOLD + 'Filtering, Sorting and Indexing Completed!!!' + ctw.CEND)

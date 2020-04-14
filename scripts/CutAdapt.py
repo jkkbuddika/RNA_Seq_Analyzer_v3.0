@@ -18,20 +18,19 @@ class CutAdapt:
 
         ctw = ColorTextWriter.ColorTextWriter()
 
-        print(ctw.CBEIGE + ctw.CBOLD + 'Running CutAdapt ...' + ctw.CEND + '\n')
+        print('\n' + ctw.CBEIGE + ctw.CBOLD + 'Running CutAdapt ...' + ctw.CEND + '\n')
 
         r1_reads = sorted(glob.glob(self.input_dir + '*R1.fastq'))
         r2_reads = sorted(glob.glob(self.input_dir + '*R2.fastq'))
 
         if self.seq_method == 'single':
             for i in r1_reads:
-                print('\n' + ctw.CBEIGE + ctw.CBOLD + 'CutAdapting: ' + ctw.CBLUE + os.path.basename(i) +
-                      ctw.CBEIGE + ctw.CBOLD + ' ...' + ctw.CEND + '\n')
+                print('\n' + ctw.CBEIGE + ctw.CBOLD + 'CutAdapting: ' + ctw.CBLUE + os.path.basename(i) + ctw.CBEIGE + ctw.CBOLD + ' ...' + ctw.CEND + '\n')
 
                 output_file = outdir + '/' + os.path.basename(i).split('.fastq')[0] + '_trimmed' + self.extensions[0]
 
                 command = [
-                    'cutadapt -m 30',
+                    'cutadapt -f fastq -m 30 --quality-cutoff 5',
                     '-o', output_file, i,
                     '>', output_file.split('_trimmed')[0] + '_trim.matrics' + self.extensions[3]
                 ]
@@ -41,14 +40,13 @@ class CutAdapt:
 
         elif self.seq_method == 'paired':
             for (i, j) in zip(r1_reads, r2_reads):
-                print('\n' + ctw.CBEIGE + ctw.CBOLD + 'CutAdapting: ' + ctw.CBLUE + os.path.basename(i) + ' and ' +
-                      os.path.basename(j) + ctw.CBEIGE + ctw.CBOLD + ' ...' + ctw.CEND + '\n')
+                print('\n' + ctw.CBEIGE + ctw.CBOLD + 'CutAdapting: ' + ctw.CBLUE + os.path.basename(i) + ' and ' + os.path.basename(j) + ctw.CBEIGE + ctw.CBOLD + ' ...' + ctw.CEND + '\n')
 
                 output_file_R1 = outdir + '/' + os.path.basename(i).split('.fastq')[0] + '_trimmed' + self.extensions[0]
                 output_file_R2 = outdir + '/' + os.path.basename(j).split('.fastq')[0] + '_trimmed' + self.extensions[0]
 
                 command = [
-                    'cutadapt -m 30 -u 5',
+                    'cutadapt -f fastq -m 30 --quality-cutoff 5',
                     '-o', output_file_R1, '-p', output_file_R2, i, j,
                     '>', output_file_R1.split('_trimmed')[0] + '_trim.matrics' + self.extensions[3]
                 ]

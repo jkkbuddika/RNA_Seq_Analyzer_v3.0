@@ -15,13 +15,13 @@ class FastQCRunner:
         outdir = os.path.join(self.home_dir, self.output_dir)
         if not os.path.isdir(outdir): os.mkdir(outdir)
 
-        file_list = sorted(glob.glob(self.input_dir + '*.fastq'))
+        fastq_list = sorted(glob.glob(self.input_dir + '*.fastq'))
 
         ctw = ColorTextWriter.ColorTextWriter()
 
         print(ctw.CBEIGE + ctw.CBOLD + 'Running FastQC ...' + ctw.CEND)
 
-        for input_file in file_list:
+        for input_file in fastq_list:
 
             print('\n')
 
