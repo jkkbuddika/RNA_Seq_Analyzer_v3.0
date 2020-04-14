@@ -15,11 +15,11 @@ class BigWigFileMaker():
         outdir = os.path.join(self.home_dir, 'bedgraphs')
         if not os.path.isdir(outdir): os.mkdir(outdir)
 
-        bam_list = sorted(glob.glob(self.input_dir + '*.bam'))
+        file_list = sorted(glob.glob(self.input_dir + '*.bam'))
 
         ctw = ColorTextWriter.ColorTextWriter()
 
-        for i in bam_list:
+        for i in file_list:
 
             print('\n' + ctw.CRED + 'Generating BigWig file for ' + ctw.CBLUE + os.path.basename(i) + ctw.CRED + ' ...' + ctw.CEND + '\n')
 

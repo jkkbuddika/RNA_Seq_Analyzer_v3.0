@@ -1,6 +1,6 @@
 import os
-import subprocess as sp
 import tarfile
+import subprocess as sp
 import ColorTextWriter
 
 class TarExtractor:

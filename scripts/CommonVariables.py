@@ -12,6 +12,9 @@ class CommonVariables:
     extensions = ['.fastq', '.sam', '.csv', '.txt', '.bam', '.bw', '.bed']
     summary_dir = home_dir + 'summary_files/'
 
+    ## Cutadapt Variables
+    cutadapt_dir = home_dir + 'cutadapt/'
+
     ## TagDust Variables
     tagdust_singu = add_mat + 'gostripes.simg'
     tagdust_out = home_dir + 'tagdust_out/'

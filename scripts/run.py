@@ -3,6 +3,7 @@ import CommonVariables
 import FastQCRunner
 import Tagduster
 import TDSummaryProcessor
+import CutAdapt
 import WebDownloader
 import RefGenMaker
 import StarAligner
@@ -21,10 +22,13 @@ print(ctw.CRED + 'This script can take minutes to hours to analyze your data bas
 gv = GeneralVariables.GeneralVariables()
 cv = CommonVariables.CommonVariables()
 
-qc_raw = FastQCRunner.FastQCRunner(cv.home_dir, cv.fastqc_raw, cv.raw_sequences_dir, cv.file_type[0])
-qc_raw.fastqc()
+qc_1 = FastQCRunner.FastQCRunner(cv.home_dir, cv.fastqc_raw, cv.raw_sequences_dir)
+qc_1.fastqc()
 
-td = Tagduster.Tagduster(cv.home_dir, cv.tagdust_singu, cv.raw_sequences_dir, cv.rRNA_path, cv.extensions, gv.seq_method)
+ca = CutAdapt.CutAdapt(cv.home_dir, cv.raw_sequences_dir, cv.extensions, gv.seq_method)
+ca.cutadapt()
+
+td = Tagduster.Tagduster(cv.home_dir, cv.tagdust_singu, cv.cutadapt_dir, cv.rRNA_path, cv.extensions, gv.seq_method)
 td.tagdust()
 
 tdsp = TDSummaryProcessor.TDSummaryProcessor(cv.home_dir, cv.tagdust_out)
@@ -42,10 +46,7 @@ rg.refgen()
 sa = StarAligner.StarAligner(cv.home_dir, cv.tagdust_out, cv.Threads, cv.ref_genome, cv.extensions, cv.genes_gtf, gv.seq_method)
 sa.aligner()
 
-qc_bam = FastQCRunner.FastQCRunner(cv.home_dir, cv.fastqc_bam, cv.star_aligned, cv.file_type[1])
-qc_bam.fastqc()
-
-ss = SamTools.SamTools(cv.home_dir, cv.star_aligned, cv.Threads, cv.extensions)
+ss = SamTools.SamTools(cv.home_dir, cv.star_aligned, cv.Threads, cv.extensions, gv.seq_method, gv.deduplication)
 ss.sam_sorting()
 
 bw = BigWigFileMaker.BigWigFileMaker(cv.home_dir, cv.sam_sorted, cv.extensions)
@@ -58,4 +59,4 @@ mqc = MultiQCRunner.MultiQCRunner(cv.home_dir)
 mqc.multiqc()
 
 ctw = ColorTextWriter.ColorTextWriter()
-print('\n' + ctw.CGREEN + ctw.CBOLD + ctw.CBLINK + 'Data analysis is successfully completed!!! ' + ctw.CEND + '\n')
+print('\n' + ctw.CGREEN + ctw.CBOLD + 'Data analysis successfully completed !!!' + ctw.CBLACK + ctw.CURL + ctw.CBLINK + ctw.CEND + '\n')

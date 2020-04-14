@@ -55,7 +55,8 @@ class StarAligner:
                 output_file = outdir + '/' + os.path.basename(i).split('tagdustout_READ1.fq')[0] + 'aligned' + self.extensions[4]
 
                 if i.endswith('_tagdustout_READ1.fq') and j.endswith('_tagdustout_READ2.fq'):
-                    print('\n' + ctw.CBEIGE + ctw.CBOLD + 'Mapping: ' + ctw.CBLUE + os.path.basename(i) + ' and ' + os.path.basename(j) + ctw.CBEIGE + ctw.CBOLD + ' ...' + ctw.CEND + '\n')
+                    print('\n' + ctw.CBEIGE + ctw.CBOLD + 'Mapping: ' + ctw.CBLUE + os.path.basename(i) + ' and ' +
+                          os.path.basename(j) + ctw.CBEIGE + ctw.CBOLD + ' ...' + ctw.CEND + '\n')
 
                     command = [
                         'STAR --runThreadN', self.threads,
@@ -73,9 +74,9 @@ class StarAligner:
         print('\n' + ctw.CRED + ctw.CBOLD + 'Star Alignment Completed!!!' + ctw.CEND + '\n')
 
         #### Mapping quality control using Qualimap
-        bam_list = sorted(glob.glob(outdir + '/' + '*.bam'))
+        bam_files = sorted(glob.glob(outdir + '/' + '*.bam'))
 
-        for i in bam_list:
+        for i in bam_files:
             command = [
                 'qualimap rnaseq',
                 '-bam', i,
