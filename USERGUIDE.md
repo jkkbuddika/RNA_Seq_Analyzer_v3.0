@@ -5,7 +5,7 @@ Please go through this step-by-step guide to setup and begin analysis of your da
 Set up a conda environment with all necessary packages installed. To set up the conda environment (i.e., dataanalyzer):
 ```
 conda create -n dataanalyzer -c conda-forge -c bioconda python=3.7
-conda install -n dataanalyzer -c conda-forge -c bioconda fastqc star qualimap samtools deeptools subread multiqc singularity
+conda install -n dataanalyzer -c conda-forge -c bioconda fastqc star qualimap samtools deeptools subread multiqc
 ```
 To update your conda environment:
 ```
