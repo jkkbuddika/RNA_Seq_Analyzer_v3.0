@@ -1,5 +1,5 @@
 # User guide
-Please go through this step-by-step guide to setup and begin analysis of your data. This is a ***six*** step process:
+Please go through this step-by-step guide to setup and begin analysis of your data. This is a ***four*** step process:
 
 ### Step 1: Getting started
 Set up a conda environment with all necessary packages installed. To set up the conda environment (i.e., dataanalyzer):
