@@ -30,7 +30,7 @@ class CutAdapt:
                 output_file = outdir + '/' + os.path.basename(i).split('.fastq')[0] + '_trimmed' + self.extensions[0]
 
                 command = [
-                    'cutadapt -f fastq -m 30 --quality-cutoff 5',
+                    'cutadapt -f fastq --quality-cutoff 5',
                     '-o', output_file, i,
                     '>', output_file.split('_trimmed')[0] + '_trim.matrics' + self.extensions[3]
                 ]
@@ -46,7 +46,7 @@ class CutAdapt:
                 output_file_R2 = outdir + '/' + os.path.basename(j).split('.fastq')[0] + '_trimmed' + self.extensions[0]
 
                 command = [
-                    'cutadapt -f fastq -m 30 --quality-cutoff 5',
+                    'cutadapt -f fastq --quality-cutoff 5',
                     '-o', output_file_R1, '-p', output_file_R2, i, j,
                     '>', output_file_R1.split('_trimmed')[0] + '_trim.matrics' + self.extensions[3]
                 ]

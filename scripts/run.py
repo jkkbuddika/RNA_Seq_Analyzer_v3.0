@@ -43,11 +43,11 @@ ss.sam_sorting()
 bw = BigWigFileMaker.BigWigFileMaker(cv.home_dir, cv.sam_sorted, cv.extensions)
 bw.bigwig()
 
-fc = FeatureCounter.FeatureCounter(cv.home_dir, cv.sam_sorted, gv.diff_features, cv.feature_dir, cv.feature_file, cv.extensions, cv.seq_method)
+fc = FeatureCounter.FeatureCounter(cv.home_dir, cv.sam_sorted, cv.diff_features, cv.feature_dir, cv.feature_file, cv.extensions, cv.seq_method)
 fc.feature()
 
 mqc = MultiQCRunner.MultiQCRunner(cv.home_dir)
 mqc.multiqc()
 
 ctw = ColorTextWriter.ColorTextWriter()
-print('\n' + ctw.CGREEN + ctw.CBOLD + 'Data analysis successfully completed !!!' + ctw.CBLACK + ctw.CURL + ctw.CBLINK + ctw.CEND + '\n')
+print('\n' + ctw.CGREEN + ctw.CBOLD + 'Data analysis is successfully completed !!!' + ctw.CBLACK + ctw.CURL + ctw.CBLINK + ctw.CEND + '\n')

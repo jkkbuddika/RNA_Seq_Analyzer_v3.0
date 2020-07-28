@@ -28,7 +28,7 @@ class CommonOptions:
     hs_genome = 'ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_34/GRCh38.primary_assembly.genome.fa.gz'
     mm_genome = 'ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M25/GRCm38.primary_assembly.genome.fa.gz'
     dr_genome = 'ftp://ftp.ensembl.org/pub/release-100/fasta/danio_rerio/dna/Danio_rerio.GRCz11.dna_sm.toplevel.fa.gz'
-    if gv.species == 'custom': custom_genome = input('Ensembl url to the genome to download: ')
+    if gv.species == 'custom': custom_genome = input('FTP link to the genome to download: ')
 
     ## Support Annotations
     dm_annotation = 'ftp://ftp.ensembl.org/pub/release-100/gtf/drosophila_melanogaster/Drosophila_melanogaster.BDGP6.28.100.gtf.gz'
@@ -36,7 +36,7 @@ class CommonOptions:
     hs_annotation = 'ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_34/gencode.v34.annotation.gtf.gz'
     mm_annotation = 'ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M25/gencode.vM25.annotation.gtf.gz'
     dr_annotation = 'ftp://ftp.ensembl.org/pub/release-100/gtf/danio_rerio/Danio_rerio.GRCz11.100.gtf.gz'
-    if gv.species == 'custom': custom_annotation = input('Ensembl url to the annotation to download: ')
+    if gv.species == 'custom': custom_annotation = input('FTP link to the annotation to download: ')
 
     ## Genome Sequence and Annotation Details
     genome_file = os.path.basename(eval(gv.species + '_genome'))
@@ -62,3 +62,4 @@ class CommonOptions:
 
     ## FeatureCounts
     fc_output = home_dir + 'feature_counts'
+    diff_features = ['gene', 'exon']
