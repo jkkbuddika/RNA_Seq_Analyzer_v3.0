@@ -37,81 +37,47 @@ mv RNA-Seq-Data-Analyzer/*/ ./
 rm -rf RNA-Seq-Data-Analyzer
 ls
 ```
-> add_mat   
+> environment           
 > scripts     
 
-### Step 3: Download additional materials
-#### Download the singularity image from GoSTRIPES workflow to use TagDust2 for rRNA removal
-To do this:
-```
-cd add_mat
-singularity pull --name gostripes.simg shub://BrendelGroup/GoSTRIPES
-cd ..
-```
-Note that the *add_mat* directory by default contain rRNA sequences for *D. melanogaster*, *C. elegans* and *S. cerevisiae* downloaded from Ensembl [BioMart](https://www.ensembl.org/biomart/martview/b1eec568acae1f43251215e8bd8f26fd).
-```
-cd add_mat
-ls
-cd ..
-```
-> Celegans_rRNA.txt	  
-> Dro_rRNA.txt		    
-> gostripes.simg        
-> Yeast_rRNA.txt    
-
-Here is the link to [GoSTRIPES](https://github.com/BrendelGroup/GoSTRIPES) workflow hosted by the [Brendel Group](http://brendelgroup.org/).      
-
-### Step 4: Analysis mode selection and defining additional experiment specific variables
-To specify experiment specific variables, open and update "GeneralVariables.py" module using emacs text editor.
-```
-cd scripts
-emacs GeneralVariables.py
-```
-- **seq_method** : Run-mode. Options are 'single' (single-end data analysis) or 'paired' (paired-end data analysis).
-- **rRNA_list** : Name of the rRNA sequence list in *add_mat* directory. Ex: 'Dro_rRNA.txt'
-- **snps_file** : Name of the BED file containing SNPs in *add_mat* directory. Ex: 'Dro_snps.bed'
-- **genome** : Biomart link to the genome of interest. Ex: Link to the Drosophila genome is "ftp://ftp.ensembl.org/pub/release-99/fasta/drosophila_melanogaster/dna/Drosophila_melanogaster.BDGP6.28.dna_sm.toplevel.fa.gz"
-- **feature** : Biomart link to the genome annotation of interest. Ex: Link to the Drosophila genome annotation is "ftp://ftp.ensembl.org/pub/release-99/gtf/drosophila_melanogaster/Drosophila_melanogaster.BDGP6.28.99.gtf.gz"
-- **stranded** : Strandedness of the library preparation. Options are **0** (unstranded), **1** (stranded) or **2** (reversely stranded)
-- **diff_features** : Features to be counted using featureCounts. To check supported features, download and open the annotation file using "less" command.
-
-Once necessary changes are being made:
-```
-Ctrl+x+s then Ctrl+x+c ## To save and quit emacs
-cd ..
-ls
-```
-> add_mat  
-> scripts
-
-### Step 5: Input data preparation
+### Step 3: Input data preparation
 The pipeline uses input files in .fastq format for analysis. To upload input data, navigate first to the home directory and create a directory *raw_sequences*.
 ```
 mkdir raw_sequences
 ls
 ```
-> add_mat  
+> environment         
 > raw_sequences   
 > scripts   
 
-Then upload input sequences to the *raw_sequences* directory. Naming of files is ***very important*** and follow the recommended naming scheme. Name of an input fastq file must end in the following order: `_R1.fastq` or/and `_R2.fastq`
+Then upload input sequences to the *raw_sequences* directory. Naming of files is ***very important*** and ***must*** follow the recommended naming scheme. Name of an input fastq file must end in the following order: `_R1.fastq` or/and `_R2.fastq`
 
-If the naming is different than what is required, you can use the following bash command to automatically rename all files to the correct architecture.
+If the naming is different than what is required, you can use a bash command like below to automatically rename all files to the correct architecture.
 ```
 for i in `ls *R1*`; do
 newname="${i/%_001.fastq/.fastq}"
 mv -- "$i" "$newname"; 
 done
 ```
-> In the above example, running this command will convert a file name from `esg_WT_T1_R1_001.fastq` to `esg_WT_T1_R1.fastq`.    
+> In the above example, running this command will convert a file name from `esg_WT_T1_R1_001.fastq` to `esg_WT_T1_R1.fastq`.
 
-### Step 6: Executing the pipeline
-All executables of the pipeline are written onto *run.py* module. To start analyzing data activate the conda environment above, navigate to the scripts directory and execute *run.py* using python.
+### Step 4: Executing the pipeline
+All executables of the pipeline are written onto *run.py* module. To start analyzing data, activate the conda environment above, navigate to the scripts directory and execute *run.py* using python.
 ```
 source activate dataanalyzer
 cd scripts
 python run.py
 ```
+This should intiate running the analysis pipeline. Immediately you will get a couple questions that you have to answer.
+- **Enter the species code (Options: hs, mm, dm, ce, dr or custom):** Answer based on the species, **hs**: human, **mm**: mouse, **dm**: fruit fly, **ce**: *C. elegans*, **dr**: zebra fish or **custom**: any other model organism
+- **Enter the Run Mode (Options: 0 for single-end or 1 for paired-end):** Pipeline supports analysis of both single-end or paired-end data. Answer **0** if single-end. Answer **1** if paired-end.
+- **Deduplication (Options: TRUE or FALSE):** The pipeline allows deduplication using Samtools. Choice is yours! Answer **TRUE** to activate or **FALSE** to deactivate deduplication.
+
+Note if the species is **custom** this will prompt two more additional questions:
+- **FTP link to the genome to download:** Enter the link to the genome FASTA to download. For instance, if the custom species is yeast here is the Ensembl url to download the genome, ftp://ftp.ensembl.org/pub/release-100/fasta/saccharomyces_cerevisiae/dna/Saccharomyces_cerevisiae.R64-1-1.dna_sm.toplevel.fa.gz
+- **FTP link to the annotation to download:** Enter the link to the corresponding GTF to download. For instance, if the custom species is yeast here is the Ensembl url to download the GTF, ftp://ftp.ensembl.org/pub/release-100/gtf/saccharomyces_cerevisiae/Saccharomyces_cerevisiae.R64-1-1.100.gtf.gz
+
+You are all set!!! Let it run. Depending on the size of each file and the number of datasets run time can vary so much!
 
 ### Retrieve additional information
 It is important to track the number of sequences retained after each step. You can use following bash commands to acheive this.
@@ -138,4 +104,4 @@ done > bam_readCounts_aligned.txt
 ```
 > Executing the above bash command will save a file named *bam_readCounts_aligned.txt* in the *star_aligned* directory with bam file names and number of reads that are mapped to the reference genome. Note that the [sam flag](https://broadinstitute.github.io/picard/explain-flags.html) ***4*** eliminates unmapped sequences from the count, thus giving the total number of sequences that are successfully aligned.     
 
-Now that you have carefully read the **USER GUIDE** let's use a publically available dataset to identify A-to-I editing sites, [click here](https://github.com/jkkbuddika/RNA-Seq-Data-Analyzer/blob/master/VIGNETTE.md).
+Now that you have carefully read the **USER GUIDE** let's use a publically available dataset to analyze, [click here](https://github.com/jkkbuddika/RNA-Seq-Data-Analyzer/blob/master/VIGNETTE.md).
