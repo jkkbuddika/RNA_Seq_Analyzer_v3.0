@@ -1,28 +1,7 @@
 # User guide
 Please go through this step-by-step guide to setup and begin analysis of your data. This is a ***four*** step process:
 
-### Step 1: Getting started
-Set up a conda environment with all necessary packages installed. To set up the conda environment (i.e., dataanalyzer):
-```
-conda create -n dataanalyzer -c conda-forge -c bioconda python=3.7
-conda install -n dataanalyzer -c conda-forge -c bioconda fastqc star qualimap samtools deeptools subread multiqc
-```
-To update your conda environment:
-```
-conda update -n dataanalyzer -c conda-forge -c bioconda --all
-```
-To activate the enironment:
-```
-source activate dataanalyzer
-```
-To deactivate the environment:
-```
-source deactivate
-```
-
-For more details on managing conda enviroments [click here](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#).
-
-### Step 2: Cloning the repository
+### Step 1: Cloning the repository
 To clone the current repository on to your local repository using terminal, first navigate to the ***home directory*** (i.e., where you want analyzed data to be deposited), paste and enter the following command:
 
 ```
@@ -38,7 +17,42 @@ rm -rf RNA-Seq-Data-Analyzer
 ls
 ```
 > environment           
-> scripts     
+> scripts 
+
+### Step 2: Setup the miniconda environment
+There are two ways to set up the conda environment: (1) Using the *environment.yml* file in the **environment** directory or (2) manually creating a conda environment and installing all required packages. The advantage of using the first approach is, it gives the conda environment I used when I was writing this python pipeline. However, the second approach let you install the latest versions of required packages. Note that based on the version of a similar tool, the output results can be varied. Let's go through how to both of these.
+
+#### Install miniconda
+Before creating the environment, [install](https://conda.io/projects/conda/en/latest/user-guide/install/index.html?highlight=conda) miniconda and add conda to you PATH. Then update conda by running ```conda update conda```.
+
+#### Setting up the miniconda environment with the *environment.yml* file
+Simply copy, paste and run the following command on your terminal window.
+
+```
+cd environment
+conda env create -f environment.yml
+cd ..
+```
+Running this command will create a conda environment named ***dataanalyzer*** on your local computer.
+
+#### Setting up the miniconda environment by manually installing required packages and dependencies
+In this scenario, to setup the conda environment (i.e., dataanalyzer), run following terminal commands.
+
+```
+conda create -n dataanalyzer -c conda-forge -c bioconda python=3.7
+conda install -n dataanalyzer -c conda-forge -c bioconda fastqc star qualimap samtools deeptools subread multiqc
+```
+#### Activate and deactivate the miniconda environment
+To activate the enironment:
+```
+source activate dataanalyzer
+```
+To deactivate the environment run the following terminal command or simply close the terminal window:
+```
+source deactivate
+```
+
+For more details on managing conda enviroments [click here](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#).
 
 ### Step 3: Input data preparation
 The pipeline uses input files in .fastq format for analysis. To upload input data, navigate first to the home directory and create a directory *raw_sequences*.
