@@ -74,8 +74,11 @@ This should intiate running the analysis pipeline. Immediately you will get a co
 - **Deduplication (Options: TRUE or FALSE):** The pipeline allows deduplication using Samtools. Choice is yours! Answer **TRUE** to activate or **FALSE** to deactivate deduplication.
 
 Note if the species is **custom** this will prompt two more additional questions:
-- **FTP link to the genome to download:** Enter the link to the genome FASTA to download. For instance, if the custom species is yeast here is the Ensembl url to download the genome, ftp://ftp.ensembl.org/pub/release-100/fasta/saccharomyces_cerevisiae/dna/Saccharomyces_cerevisiae.R64-1-1.dna_sm.toplevel.fa.gz
-- **FTP link to the annotation to download:** Enter the link to the corresponding GTF to download. For instance, if the custom species is yeast here is the Ensembl url to download the GTF, ftp://ftp.ensembl.org/pub/release-100/gtf/saccharomyces_cerevisiae/Saccharomyces_cerevisiae.R64-1-1.100.gtf.gz
+- **FTP link to the genome to download:** Enter the link to the genome FASTA to download. For instance, if the custom species is yeast here is the Ensembl url to download the genome.
+> ftp://ftp.ensembl.org/pub/release-100/fasta/saccharomyces_cerevisiae/dna/Saccharomyces_cerevisiae.R64-1-1.dna_sm.toplevel.fa.gz               
+
+- **FTP link to the annotation to download:** Enter the link to the corresponding GTF to download. For instance, if the custom species is yeast here is the Ensembl url to download the GTF.
+> ftp://ftp.ensembl.org/pub/release-100/gtf/saccharomyces_cerevisiae/Saccharomyces_cerevisiae.R64-1-1.100.gtf.gz                  
 
 You are all set!!! Let it run. Depending on the size of each file and the number of datasets run time can vary so much!
 
