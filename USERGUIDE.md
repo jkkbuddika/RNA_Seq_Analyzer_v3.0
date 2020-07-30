@@ -40,7 +40,7 @@ In this scenario, to setup the conda environment (i.e., dataanalyzer), run follo
 
 ```
 conda create -n dataanalyzer -c conda-forge -c bioconda python=3.7
-conda install -n dataanalyzer -c conda-forge -c bioconda fastqc star qualimap samtools deeptools subread multiqc
+conda install -n dataanalyzer -c conda-forge -c bioconda fastqc star qualimap samtools deeptools subread multiqc pandas
 ```
 #### Activate and deactivate the miniconda environment
 To activate the enironment:
