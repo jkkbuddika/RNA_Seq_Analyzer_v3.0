@@ -2,7 +2,7 @@
 The current version of the RNA-Seq data analyzer is compatible with both single and paired-end (SE and PE) data. The series of python based modules in this repository automate the data analysis process. I ***highly recommend*** reading through this step-by-step manual *carefully* before you start analyzing your data.
 
 ## Requirements
-The RNA-seq data analyzer requires following tools to be installed (see the [here](https://github.com/jkkbuddika/RNA-Seq-Data-Analyzer/blob/master/USERGUIDE.md) for installation) for data analysis.
+The RNA-seq data analyzer requires following tools to be installed (see [here](https://github.com/jkkbuddika/RNA-Seq-Data-Analyzer/blob/master/USERGUIDE.md#step-2-setup-the-miniconda-environment)) for data analysis.
 
 - [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
 - [Cutadapt](https://cutadapt.readthedocs.io/en/stable/)
