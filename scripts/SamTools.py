@@ -27,13 +27,17 @@ class SamTools():
 
             output_file = outdir + '/' + os.path.basename(i).split('.bam')[0] + 'sorted' + self.extensions[4]
 
-            command = ['samtools sort -n -@', self.threads, '-T', outdir + '/', i, '|']
+            command = []
 
             if self.deduplication != 'TRUE':
+                command.extend(['samtools sort -@', self.threads, '-T', outdir + '/', i, '|'])
+
                 if self.seq_method == 'single': command.extend(['samtools view -F 2304 -O BAM -@', self.threads])
                 if self.seq_method == 'paired': command.extend(['samtools view -F 2316 -f 3 -O BAM -@', self.threads])
 
             if self.deduplication == 'TRUE':
+                command.extend(['samtools sort -n -@', self.threads, '-T', outdir + '/', i, '|'])
+
                 if self.seq_method == 'single':
                     command.extend(['samtools fixmate -m - - |',
                                     'samtools sort -@', self.threads, '- |',
