@@ -17,17 +17,22 @@ class RefGenMaker:
 
         ctw = ColorTextWriter.ColorTextWriter()
 
-        print(ctw.CBEIGE + ctw.CBOLD + 'Creating the STAR Reference Genome ...' + ctw.CEND + '\n')
+        if len(os.listdir(outdir + '/')) == 0:
 
-        command = [
-            'STAR --runThreadN', self.threads,
-            '--runMode genomeGenerate --genomeSAindexNbases 12',
-            '--genomeDir', outdir + '/',
-            '--genomeFastaFiles', self.genome_fasta,
-            '--sjdbGTFfile', self.genes_gtf
-        ]
+            print(ctw.CBEIGE + ctw.CBOLD + 'Creating the STAR Reference Genome ...' + ctw.CEND + '\n')
 
-        command = ' '.join(command)
-        sp.check_call(command, shell=True)
+            command = [
+                'STAR --runThreadN', self.threads,
+                '--runMode genomeGenerate --genomeSAindexNbases 12',
+                '--genomeDir', outdir + '/',
+                '--genomeFastaFiles', self.genome_fasta,
+                '--sjdbGTFfile', self.genes_gtf
+            ]
 
-        print('\n' + ctw.CBEIGE + ctw.CBOLD + 'Reference Genome Created!!!' + ctw.CEND)
+            command = ' '.join(command)
+            sp.check_call(command, shell=True)
+
+            print('\n' + ctw.CBEIGE + ctw.CBOLD + 'Reference Genome Created!!!' + ctw.CEND)
+
+        else:
+            print(ctw.CRED + "Destination directory contain files. Ignoring STAR Reference Genome generation!!!" + ctw.CEND + '\n')
