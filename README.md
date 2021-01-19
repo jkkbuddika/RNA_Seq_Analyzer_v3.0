@@ -20,5 +20,5 @@ All analyzed data will be saved onto the home directory where you deposited the 
 
 Now that you know the general outline of the analysis process, go through the step-by-step **user guide** given [here](https://github.com/jkkbuddika/RNA-Seq-Data-Analyzer/blob/master/USERGUIDE.md) to analyze your RNA-seq data.
 
-If you use RNA-seq Data Analyzer, please cite: https://doi.org/10.1101/2020.06.27.175174
+If you use RNA-seq Data Analyzer, please cite: [I-KCKT allows dissection-free RNA profiling of adult Drosophila intestinal progenitor cells](https://dev.biologists.org/content/148/1/dev196568)
 
